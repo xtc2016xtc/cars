@@ -23,8 +23,8 @@ const Hero = () => {
         <CustomButton 
           title="搜索汽车"
           containerStyles="bg-primary-blue text-white rounded-full mt-10"
-          handleClick={handleScroll}
-        />
+          handleClick={handleScroll} 
+          btnType={"button"}        />
       </div>
       {/* 背景图 */}
       <div className="hero__image-container">
