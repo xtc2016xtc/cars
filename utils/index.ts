@@ -12,3 +12,18 @@ export async function fetchCars() {
 
   return result
 } 
+
+export const calculateCarRent = (city_mpg: number, year: number) => {
+  const basePricePerDay = 50; //租金
+  const mileageFactor = 0.1; //每公里附加费用
+  const ageFactor = 0.05; //每年附加费用
+
+  // 根据里程和年限计算附加费用
+  const mileageRate = city_mpg * mileageFactor;
+  const ageRate = (new Date().getFullYear() - year) * ageFactor;
+
+  // 每天的租金
+  const rentalRatePerDay = basePricePerDay + mileageRate + ageRate;
+
+  return rentalRatePerDay.toFixed(0);
+};

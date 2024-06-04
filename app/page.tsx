@@ -1,4 +1,4 @@
-import { CustomFilter, Hero, SearchBar } from "@/components";
+import { CarCard, CustomFilter, Hero, SearchBar } from "@/components";
 import { fetchCars } from "@/utils";
 import Image from "next/image";
 
@@ -29,11 +29,14 @@ export default async function Home() {
 
         {!isDataEmpty ? (
           <section>
-            我们拥有的汽车
+           <div className="home__cars-wrapper">
+              {allCars?.map((car)=><CarCard car={car} key="null"/>) }
+           </div>
           </section>
         ):(
-          <div>
-            <h2></h2>
+          <div className="home__error-container">
+            <h2 className=" text-black text-xl font-bold">搜索,没有这个哦</h2>
+            <p>{allCars?.message}</p>
           </div>
         )}
 
