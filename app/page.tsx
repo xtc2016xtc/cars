@@ -1,9 +1,16 @@
 import { CarCard, CustomFilter, Hero, SearchBar } from "@/components";
+import { HomeProps } from "@/types";
 import { fetchCars } from "@/utils";
 import Image from "next/image";
 
-export default async function Home() {
-  const allCars = await fetchCars();
+export default async function Home({ searchParams }: HomeProps) {
+  const allCars = await fetchCars({
+    manufacturer: searchParams.manufacturer || "",
+    year: searchParams.year || 2022,
+    fuel: searchParams.fuel || "",
+    limit: searchParams.limit || 10,
+    model: searchParams.model || "",
+  });
 
   const isDataEmpty = !Array.isArray(allCars) || allCars.length < 1 || !allCars;
   
@@ -22,8 +29,8 @@ export default async function Home() {
           <SearchBar />
         {/* 车辆总览 */}
         <div className="home__filter-container">
-          <CustomFilter title="fuel"/>
-          <CustomFilter title="year"/>
+          <CustomFilter title="fuel" options={[]}/>
+          <CustomFilter title="year" options={[]}/>
         </div>
         </div>
 
@@ -35,7 +42,7 @@ export default async function Home() {
           </section>
         ):(
           <div className="home__error-container">
-            <h2 className=" text-black text-xl font-bold">搜索,没有这个哦</h2>
+            <h2 className=" text-black text-xl font-bold">搜索失败!,没有这个车辆信息</h2>
             <p>{allCars?.message}</p>
           </div>
         )}
