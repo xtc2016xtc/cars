@@ -8,9 +8,9 @@ import { manufacturers } from '@/constants';
 // Next.js的Image组件，用于优化图片加载。
 import Image from 'next/image'
 // 导入自定义的类型定义。
-import { SearchManufacturerProps } from '@/types'
+import { SearchManuFacturerProps } from '@/types'
 // 定义SearchManufacturer函数组件，接受manufacturer和setManufacturer两个props。
-const SearchManufacturer = ({manufacturer,setManufacturer}:SearchManufacturerProps) => {
+const SearchManufacturer = ({selected,setSelected}:SearchManuFacturerProps) => {
   // 使用useState创建状态变量query和setQuery，用于存储和更新搜索框中的查询文本。
   const [query, setQuery] = useState('');
    // 根据query值过滤manufacturers列表。如果query为空，则返回所有车辆名称；否则，返回包含query关键车辆名称。
@@ -26,7 +26,7 @@ const SearchManufacturer = ({manufacturer,setManufacturer}:SearchManufacturerPro
 
   return (
     <div className='search-manufacturer'>
-      <Combobox value={manufacturer} onChange={setManufacturer}>
+      <Combobox value={selected} onChange={setSelected}>
         <div className='relative w-full'>
         <Combobox.Button className='absolute top-[14px]'>
           <Image

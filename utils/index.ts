@@ -63,3 +63,15 @@ export const generateCarImageUrl = (car:CarProps,angle?: string) => {
 
 //   return `${url}`;
 // } 
+export const updateSearchParams = (type: string, value: string) => {
+  //获取当前url参数
+  const searchParams = new URLSearchParams(window.location.search);
+
+  // 指定搜索参数
+  searchParams.set(type, value);
+
+ 
+  const newPathname = `${window.location.pathname}?${searchParams.toString()}`;
+
+  return newPathname;
+};
